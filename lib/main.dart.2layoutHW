@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+// 위 4줄 기본셋팅문법
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+
+    // 실제로 코딩하는 영역 - 메인화면 디자인
+    // 위젯짜깁기 : 글자, 이미지, 아이콘, 박스위젯
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('앱임'),
+        ),
+        body: Text('안녕'),
+        bottomNavigationBar: BottomAppBar(
+          // height: 50, color: Colors.white,
+
+          child: SizedBox(  // height, width, child 정도만 필요하면
+            // Container 위젯은 좀 무거웡
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(Icons.phone),
+                Icon(Icons.message),
+                Icon(Icons.contact_page)
+              ],
+            ),
+          ),
+        )
+      )
+    );
+  }
+}

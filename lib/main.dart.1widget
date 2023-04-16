@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+// 위 4줄 기본셋팅문법
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+
+    // 실제로 코딩하는 영역 - 메인화면 디자인
+    // 위젯짜깁기 : 글자, 이미지, 아이콘, 박스위젯
+    return MaterialApp(
+      // home: Text('안녕')  // 글자 위젯
+
+      // home: Icon(Icons.star) // 아이콘 위젯
+      // home: Image.asset('shuri.png')
+          // 이미지 쓰겠다고 등록도 해야됨 -> pubspec.yaml flutter>assets 밑에 - assets/ 추가
+
+      // home: SizedBox()
+      // home: Container( width: 50, height : 50, color :Colors.blue)
+            // 사이즈 단위 LP (50LP = 1.2cm)
+      home:Center(  // center 위젯 , 내 자식을 가운데 놔주세요
+          // 어디부터 50을 차지할지 정해줌 = 부모. 내 자식의 기준점
+          // child 파라미터는 항상 쓸수 있는 건 아님. 쓸수 있는 곳 정해져있으니까 자동완성 잘 확인~
+          child : Container( width: 50, height : 50, color : Colors.blue)
+        )
+    );
+  }
+}

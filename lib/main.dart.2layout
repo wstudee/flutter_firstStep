@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+// 위 4줄 기본셋팅문법
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+
+    // 실제로 코딩하는 영역 - 메인화면 디자인
+    // 위젯짜깁기 : 글자, 이미지, 아이콘, 박스위젯
+    return MaterialApp(
+      home: Scaffold( // 상중하로 나눠주는 Scaffold 위젯
+        // appBar: AppBar(),
+        // body: Container(
+        body: Row( // 가로로 위젯 배치 세로는 Column위젯
+          //mainAxisAlignment: MainAxisAlignment.center,  // 가운데정렬
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,  // display:flex
+          crossAxisAlignment: CrossAxisAlignment.center, // 세로축 정렬
+          children: [
+            Icon(Icons.star),
+            Icon(Icons.star),
+            Icon(Icons.star)
+          ]
+        ),
+        // bottomNavigationBar: BottomAppBar()
+      )
+
+    );
+  }
+}

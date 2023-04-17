@@ -13,23 +13,75 @@ class MyApp extends StatelessWidget {
     // 위젯짜깁기 : 글자, 이미지, 아이콘, 박스위젯
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar( title: Text('앱임') ),
-        //body: Center(
-        body: Align(
-          alignment: Alignment.bottomCenter,
+        appBar: AppBar(
+          backgroundColor: Color(0xffffffff),
+          title: Text('금호동 3가', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
+          actions: [Icon(Icons.search), Icon(Icons.menu), Icon(Icons.notifications_none)],
+        ),
+        body: SizedBox(
           child: Container(
-            width: double.infinity, // 부모를 넘지 않는 선에서 꽉 차게
-            height: 150, // color: Colors.blue,
-            padding: EdgeInsets.all(20),
-            // padding: EdgeInsets.fromLTRB(left, top, right, bottom),
             decoration: BoxDecoration(
-              color: Colors.blue,
-              border: Border.all(color:Colors.black)
+              border: Border.all(color: Colors.red),
             ),
-            child: Text('dddd')
-          ),
+            width: double.infinity,
+            padding: EdgeInsets.all(5),
+            child: Container(
+              width: double.infinity,
+              height: 200,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.orange),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.green),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.purple),
+                            ),
+
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.purple),
+                            ),
+
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.purple),
+                            ),
+
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.purple),
+                            ),
+
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            )
+          )
         )
-      ),
-    );
+      );
   }
 }

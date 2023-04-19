@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+// 위 4줄 기본셋팅문법
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+
+    // 실제로 코딩하는 영역 - 메인화면 디자인
+    // 위젯짜깁기 : 글자, 이미지, 아이콘, 박스위젯
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(),
+          // body: ShopItem(),
+          body: ListView( // 스크롤바가 있는 긴 목록, 스크롤 위치 감시 됨, 메모리 절약(가장 큰 장점)
+            children: [
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+              Text('안녕~~'),
+            ],
+          ),
+        )
+    );
+  }
+}
+
+/** 1. 커스텀 위젯은 class로 만든다.
+ *   class 는 변수, 함수 보관함
+ *  2. class 에 어떤 파라미터를 넣을 수 있는지 정의하는 부분
+ *  3. 지워도 상관없는 부분 : 타입 지정하는 부분 Widget BuildContext
+ *  4. 함수명() : function 키워드 없어도 됨
+ *   build 함수 있어야 위젯으로 인정됨
+ *
+ *  - return 부분을 변수에 담아서 써도 똑같음 !
+ *  그치만 성능 이슈 때문에 변하지 않는 UI에 사용하기 (상단바, 하단바)
+ *
+ *  - 커스텀 위젯은 재사용 많은 UI들, 큰 페이지들 만들 때 유용
+ *  온갖 것들을 다 커스텀 위젯 만드는 건 안 좋음!
+ *
+ */
+class ShopItem extends StatelessWidget {  // StatelessWidget 완성된 하나의 위젯
+  const ShopItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    //return const Placeholder();
+    return SizedBox(
+      child: Text('안녕'),
+    );
+  }
+}

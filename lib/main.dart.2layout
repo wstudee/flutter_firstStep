@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold( // 상중하로 나눠주는 Scaffold 위젯
         // appBar: AppBar(),
         // body: Container(
-        body: Row( // 가로로 위젯 배치 세로는 Column위젯
+        body: Row( // 가로로 위젯 배치. 세로는 Column위젯
           //mainAxisAlignment: MainAxisAlignment.center,  // 가운데정렬
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,  // display:flex
           crossAxisAlignment: CrossAxisAlignment.center, // 세로축 정렬

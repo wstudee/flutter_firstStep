@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 
+/**
+ * state 
+ * 자주 바뀌는 데이터들 
+ * 바뀌면 바로바로 보여야 하는 것들을 state로 만들면 좋음
+ * 
+ */
+
 void main() {
   runApp( MyApp());
 }
 
+// state 만들기
+class Test extends StatefulWidget {
+  const Test({Key? key}) : super(key: key);
+
+  @override
+  State<Test> createState() => _TestState();
+}
+
+class _TestState extends State<Test> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+// sate 만드는 법
+// stateful 로 변환
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
 
@@ -12,28 +36,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var name = ['사랑하는 마미', '홍길동', '피자집'];
-  var like = [0, 0, 0];
+  var a = 1;  // == state 
+  var name = ['김영숙', '홍길동', '피자집'];
   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+          // ***** state 변경 되면 state 쓰는 위젯 자동 재렌더링 됨 *****
+
           appBar: AppBar( title: Text('연락처 앱 ')),
+          // 자동으로 반복해주는 ListView.builder
           body: ListView.builder(
               itemCount: 3,
               itemBuilder: (context, i){
+
+                print(i);
+                // 파라미터 context, i
+                // return Text(i.toString());
+                // return Text('123123');
                 return ListTile(
-                  leading: Text( like[i].toString() ),
+                  leading: Image.asset('shuri.png'),
                   title: Text( name[i] ),
-                  trailing: ElevatedButton(
-                    child: Text('♥좋아용'),
-                    onPressed: (){
-                      setState(() {
-                        like[i] += 1;
-                      });
-                    },
-                  ),
                 );
               }
           ),

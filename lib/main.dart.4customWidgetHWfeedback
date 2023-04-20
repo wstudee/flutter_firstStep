@@ -1,39 +1,56 @@
 import 'package:flutter/material.dart';
+/*
+var bab = BottomAppBar(
+  height: 70,
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      Icon(Icons.phone),
+      Icon(Icons.message),
+      Icon(Icons.contact_page),
+    ],
+  ),
+);
+*/
 
 void main() {
   runApp( MyApp());
 }
-
-class MyApp extends StatefulWidget {
+// 위 4줄 기본셋팅문법
+class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  var a = 1;
 
-class _MyAppState extends State<MyApp> {
-  var name = ['사랑하는 마미', '홍길동', '피자집'];
-  var like = [0, 0, 0];
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-          appBar: AppBar( title: Text('연락처 앱 ')),
+          floatingActionButton: FloatingActionButton(
+            child: Text(a.toString()),
+            onPressed: (){
+              print(a);
+              a++;
+              // 버튼 누르면 a++ 되는데
+              // 버튼 위의 a는 왜 안 바뀌는가 ?!
+              // "재 렌더링"이 안되기 때문 !
+            }
+            ,
+          ),
+
+
+          appBar: AppBar(),
+          // 자동으로 반복해주는 ListView.builder
           body: ListView.builder(
-              itemCount: 3,
+              itemCount: 10,
               itemBuilder: (context, i){
+                print(i);
+                // 파라미터 context, i
+                // return Text(i.toString());
+                // return Text('123123');
                 return ListTile(
-                  leading: Text( like[i].toString() ),
-                  title: Text( name[i] ),
-                  trailing: ElevatedButton(
-                    child: Text('♥좋아용'),
-                    onPressed: (){
-                      setState(() {
-                        like[i] += 1;
-                      });
-                    },
-                  ),
+                  leading: Image.asset('shuri.png'),
+                  title: Text('슈리'),
                 );
               }
           ),

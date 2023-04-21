@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /**
  * 2023.04.21 다이알로그
@@ -49,33 +48,7 @@ class _MyAppState extends State<MyApp> {
                   showDialog( // context 에 MaterialApp 이 있어야 작동함 . 그래서 MaterialApp을 뺀거야
                       context: context,
                       builder: (context){
-                        return Dialog(
-                          child: Container(
-                            padding: EdgeInsets.all(5),
-                            height: 300,
-                            child: Column(
-                              children: [
-                                Text('Contact',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle( fontWeight: FontWeight.bold, fontSize: 30 )),
-                                TextField(
-                                  textAlign: TextAlign.left,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextButton(onPressed: (){
-                                      Navigator.pop(context);
-                                    }, child: Text('Cancel')),
-                                    TextButton(onPressed: (){}, child: Text('Ok'))
-
-                                  ],
-                                )
-
-                              ],
-                            ),
-                          )
-                        );
+                        return Dialog(child: Text('Hola'),);
                       }
                   );
                 },

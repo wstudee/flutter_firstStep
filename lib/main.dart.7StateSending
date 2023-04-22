@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /**
  * 2023.04.22
@@ -34,13 +35,7 @@ class _MyAppState extends State<MyApp> {
   var a = 3; // 이걸 쓰고 싶다 !
   var name = ['이수댕', '홍길동', '피자집'];
   var like = [0, 0, 0];
-
-  updateState(){
-    setState(() {
-      a++;
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +47,14 @@ class _MyAppState extends State<MyApp> {
                   showDialog(
                       context: context,
                       builder: (context){
-                        return DialogUI(state : a, name : name, updateState : updateState); // step1 전송
+                        return DialogUI(state : a); // step1 전송
                       }
                   );
                 },
               );
             }
           ),
-          appBar: AppBar( title: Text(a.toString())),
+          appBar: AppBar( title: Text('연락처 앱 ')),
           body: ListView.builder(
               itemCount: 3,
               itemBuilder: (context, i){
@@ -73,16 +68,14 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
 class DialogUI extends StatelessWidget {
   // {} 중괄호 파라미터는 옵셔널
-  DialogUI({Key? key, this.state, this.name, required this.updateState}) : super(key: key);
+  const DialogUI({Key? key, this.state}) : super(key: key);
   // step2. 등록은 2군데
   // const를 지우던지 변수를 final로 만들던지
   // 보통 부모가 보낸거는 수정 안하기 때문에 final 사용이 관습
   final state;
-  final name;
-  final updateState;
+
 
   @override
   build(context) {
@@ -105,14 +98,8 @@ class DialogUI extends StatelessWidget {
                     // 현재 페이지 닫힘
                     Navigator.pop(context);
                   }, child: Text('Cancel')),
-                  TextButton(onPressed: (){
-                    print(state.toString());
-                    updateState();
-                    /*setState(() {
-                      widget.state++;
-                    });*/
-                  }, child: Text('확인')),  // step3. 사용하기
                   TextButton(onPressed: (){}, child: Text(state.toString()))  // step3. 사용하기
+
                 ],
               )
 

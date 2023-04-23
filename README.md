@@ -25,3 +25,7 @@
 - 부모 -> 자식 OK 
 - 자식 -> 부모 (X)
 - OO -> 상관 없는 위젯 (X)
+
+### 8. 자식이 부모의 state 변경하기
+- TextField -> TextEditingController, controller 
+- TextField -> onChanged

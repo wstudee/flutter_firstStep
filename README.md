@@ -26,6 +26,13 @@
 - 자식 -> 부모 (X)
 - OO -> 상관 없는 위젯 (X)
 
-### 8. 자식이 부모의 state 변경하기
+### 8. 자식이 부모의 state 변경하기 (23.04.23)
 - TextField -> TextEditingController, controller 
 - TextField -> onChanged
+
+### 9. 응용 (23.04.24)
+- 1. 완료 버튼 누르면 dialog 닫기
+- 2. 빈칸으로 완료버튼 누르면 추가 안 되게
+- 3. 이름 옆에 삭제 버튼과 기능 
+- 4. 이름 가나다 정렬 버튼 (sort 함수)
+- 5. 전화번호도 보여주기

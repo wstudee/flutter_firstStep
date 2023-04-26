@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
  * 2. 빈칸으로 완료버튼 누르면 추가 안 되게 ok 
  * 3. 이름 옆에 삭제 버튼과 기능 ok
  * 4. 이름 가나다 정렬 버튼 (sort 함수) ok
- * 5. 전화번호도 보여주기
+ * 5. 전화번호도 보여주기 ok
  */
 void main() {
   runApp( MaterialApp(

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 /**
- * 2023.04.24 응용
- * 1. 완료 버튼 누르면 dialog 닫기 ok 
- * 2. 빈칸으로 완료버튼 누르면 추가 안 되게 ok 
- * 3. 이름 옆에 삭제 버튼과 기능 ok
- * 4. 이름 가나다 정렬 버튼 (sort 함수) ok
- * 5. 전화번호도 보여주기
+ * 2023.04.26.
+ * 유저 허락 받기
+ *
+ * 허락팝업 패키지 설치
+ * pubspec.yaml
+ *
+ * gradle.properties
+ *
  */
 void main() {
   runApp( MaterialApp(
@@ -23,6 +27,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  // await : 끝날때까지 기다려주세요
+  // dart 특징. 오래걸리는 줄 제껴두고 다음 줄 실행하려고 함
+
+  getPermission() async {
+    // 패키지 만든 사람이 짠 코드임
+    var status = await Permission.contacts.status;
+    if(status.isGranted){
+      print('허락됨');
+    } else if (status.isDenied){
+      print('거절됨');
+      Permission.contacts.request();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // 앱 실행되면 물어보기
+    // 요즘에는 여기다 안함 -> 필요할 때 띄우기
+    // getPermission();
+  }
+
   var total = 3;
 
   var name = [['말숙', '010-1234-1234'], ['홍길동', '010-5678-5678'], ['피자집', '010-9090-90900']];
@@ -55,6 +82,11 @@ class _MyAppState extends State<MyApp> {
       ),
 
       appBar: AppBar( title: Text(total.toString()) ,
+          actions: [
+            IconButton(onPressed: (){
+              getPermission();
+            }, icon: Icon(Icons.contacts))
+          ],
           leading: ElevatedButton(child: Icon(Icons.sort_by_alpha),
             onPressed: (){
               setState(() {
@@ -72,7 +104,7 @@ class _MyAppState extends State<MyApp> {
           itemCount: name.length,
           itemBuilder: (context, i){
             return ListTile(
-              leading: Image.asset('shuri.png'),
+              leading: Image.asset('assets/shuri.png'),
               title: Text( name[i][0] + ' ' +  name[i][1] ),
               trailing: ElevatedButton(child: Text('삭제'),
                 onPressed: (){

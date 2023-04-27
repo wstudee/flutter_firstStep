@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:contacts_service/contacts_service.dart';
 
 
 /**
- * 2023.04.27
- * 연락처 꺼내는 패키지
- * pubspec.yaml > contacts_service
+ * 2023.04.26.
+ * 유저 허락 받기
  *
+ * 허락팝업 패키지 설치
+ * pubspec.yaml
+ *
+ * gradle.properties
  *
  */
 void main() {
@@ -34,16 +36,6 @@ class _MyAppState extends State<MyApp> {
     var status = await Permission.contacts.status;
     if(status.isGranted){
       print('허락됨');
-      var contacts = await ContactsService.getContacts();  // 연락처 꺼내기 = 오래 걸리는 코드임
-      setState(() {
-        name = contacts;
-      });
-      /*
-      var newPerson = Contact(); // new Contact(); new 생략 가능
-      newPerson.givenName = '민재';
-      newPerson.familyName = '킴';
-      ContactsService.addContact(newPerson);
-      */
     } else if (status.isDenied){
       print('거절됨');
       Permission.contacts.request();
@@ -60,15 +52,13 @@ class _MyAppState extends State<MyApp> {
 
   var total = 3;
 
-  var name = [];
+  var name = [['말숙', '010-1234-1234'], ['홍길동', '010-5678-5678'], ['피자집', '010-9090-90900']];
   var like = [0, 0, 0];
 
   addOne(text){
     setState(() {
-      var newPerson = Contact();
-      newPerson.givenName = text;
-
-      name.add(newPerson);
+      total++;
+      name.add(text);
     });
   }
 
@@ -115,7 +105,7 @@ class _MyAppState extends State<MyApp> {
           itemBuilder: (context, i){
             return ListTile(
               leading: Image.asset('assets/shuri.png'),
-              title: Text( name[i].givenName ),
+              title: Text( name[i][0] + ' ' +  name[i][1] ),
               trailing: ElevatedButton(child: Text('삭제'),
                 onPressed: (){
                   setState(() {

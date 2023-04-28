@@ -4,31 +4,11 @@ import 'package:contacts_service/contacts_service.dart';
 
 
 /**
- * 2023.04.28
- * null check
+ * 2023.04.27
+ * 연락처 꺼내는 패키지
+ * pubspec.yaml > contacts_service
  *
- * 1. 타입 지정
- * 2. null check
- *   - String?  : String 이기도 한데 null일 수도 있는 거
- *   - ??  =>    변수 ?? '이름없음'  => 변수가 null이면 '이름없음'
  *
-
- ※ 안드로이드 앱으로 발행하기
- @@ apk 발행
-  - project structure -> project : Android API ~~ 선택
-  - build -> flutter -> apk
-  - apk 파일을 핸드폰으로 옮겨서 설치
-
-  스토어에 올리고 싶다.
-  @@ abb (앱번들) key로 서명
-  1. key 파일 만들기
-    - flutter 설치 절대 경로 : 쉘 => flutter doctor -v
-    - C:\"Program Files"\Android\"Android Studio"\jbr\bin\keytool -genkey -v -keystore D:\flutter_keys\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
-  2. android/key.properties 만들기
-  3. android/app/build.gradle
-  4. build -> flutter -> app bundle
-  => 이제 이거를 스토어에 올리면 됨
-
  */
 void main() {
   runApp( MaterialApp(
@@ -46,7 +26,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  // await : 끝날때까지 기다려주세요
+  // dart 특징. 오래걸리는 줄 제껴두고 다음 줄 실행하려고 함
+
   getPermission() async {
+    // 패키지 만든 사람이 짠 코드임
     var status = await Permission.contacts.status;
     if(status.isGranted){
       print('허락됨');
@@ -54,7 +38,12 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         name = contacts;
       });
-
+      /*
+      var newPerson = Contact(); // new Contact(); new 생략 가능
+      newPerson.givenName = '민재';
+      newPerson.familyName = '킴';
+      ContactsService.addContact(newPerson);
+      */
     } else if (status.isDenied){
       print('거절됨');
       Permission.contacts.request();
@@ -64,6 +53,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    // 앱 실행되면 물어보기
+    // 요즘에는 여기다 안함 -> 필요할 때 띄우기
+    // getPermission();
   }
 
   var total = 3;

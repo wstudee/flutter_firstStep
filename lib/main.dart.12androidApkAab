@@ -4,30 +4,30 @@ import 'package:contacts_service/contacts_service.dart';
 
 
 /**
- * 2023.04.29
-   TextField 스타일 주기
+ * 2023.04.28
+ * null check
+ *
+ * 1. 타입 지정
+ * 2. null check
+ *   - String?  : String 이기도 한데 null일 수도 있는 거
+ *   - ??  =>    변수 ?? '이름없음'  => 변수가 null이면 '이름없음'
+ *
 
-    TextField 위젯 > decoration : InputDecoration()
-    1. TextField 양 옆에 아이콘
-      icon : , prefixIcon : , suffixIcon :
-      * ThemeData 안에 InputDecoration() 넣어서 모든 TextField에 스타일 줄 수 있음
-    2. border
-      enabledBorder :
-      border :
-      focusedBorder :
-      disabledBorder :
-      errorBorder :
-      focusedErrorBorder : ...
-     - 상하좌우 OutlineInputBorder()
-       둥근테두리 borderRadius :
-     - 하단 UnderlineInputBorder()
-     - 테두리없음 InputBorder.none
-     - 배경색 filled : true, fillColor :
-    3. 근처에 힌트를 띄우고 싶을 때
-     hintText : 'hint'
-     helperText : 'helper'
-     labelText : 'label'
-     counterText : 'counter'
+ ※ 안드로이드 앱으로 발행하기
+ @@ apk 발행
+  - project structure -> project : Android API ~~ 선택
+  - build -> flutter -> apk
+  - apk 파일을 핸드폰으로 옮겨서 설치
+
+  스토어에 올리고 싶다.
+  @@ abb (앱번들) key로 서명
+  1. key 파일 만들기
+    - flutter 설치 절대 경로 : 쉘 => flutter doctor -v
+    - C:\"Program Files"\Android\"Android Studio"\jbr\bin\keytool -genkey -v -keystore D:\flutter_keys\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+  2. android/key.properties 만들기
+  3. android/app/build.gradle
+  4. build -> flutter -> app bundle
+  => 이제 이거를 스토어에 올리면 됨
 
  */
 void main() {
@@ -162,23 +162,9 @@ class DialogUI extends StatelessWidget {
                   textAlign: TextAlign.left,
                   style: TextStyle( fontWeight: FontWeight.bold, fontSize: 30 )),
               TextField(
-                decoration: InputDecoration(
-                  icon: Icon(Icons.star),
-                  suffixIcon: Icon(Icons.cloudy_snowing),
-                  filled: true,
-                  fillColor: Colors.orange.shade50,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none
-
-                  ),
-                  hintText: '이름을 입력하세요', // placeHolder
-                  labelText: '이름!',
-                  counterText: '미야모',
-                  helperText: '요 쏘이'
-                ),
-
-                onChanged: (text){ inputData2 = text; },
+                // controller: inputData,
+                // controller 보다 조금 더 직관적인 방법
+                onChanged: (text){ inputData2 = text; },  // 입력값(text)이 변하면 코드를 실행해줘
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
